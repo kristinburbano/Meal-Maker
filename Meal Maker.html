@@ -1,0 +1,115 @@
+<html> 
+  <head>
+    <title>Meal Maker</title> 
+  </head>
+
+ 
+  <body> 
+    <h1>Menu</h1> 
+    <script>
+        
+        
+        const menu = {
+            _courses : {
+             appetizers: [],
+             mains: [],
+             desserts: []
+            },
+// get + method name (property trying to get) + return value we have 
+        get appetizers () {
+            return this._courses.appetizers;
+        },
+        get mains () {
+            return this._courses.mains;
+        },  
+        get desserts () {
+            return this._courses.desserts;
+        },
+// when set, we need parameter
+        set appetizers(appetizers) {
+         this._courses.appetizers = appetizers
+    },
+        set mains(mains) {
+         this._courses.mains = mains;
+    },
+        set desserts(desserts) {
+         this._courses.desserts = desserts;
+    },
+    //can write appetizers: .thisappetizers... etc
+        get courses () {
+            return _courses;
+        },
+    addDishToCourse(courseName, dishName, dishPrice) {
+    //make functionality
+    const dish = {
+        name: dishName,
+        price: dishPrice
+    };
+// add it to our course name which is sa string for appettizers.. ect
+    return this._courses[courseName].push(dish)
+},
+//method inside menu object with one param
+getRandomDishFromCourse(courseName) {
+    //retrieve  course array
+    const dishes = this._courses[courseName]
+    //generate random index
+    const randomIndex = Math.floor(Math.random() * dishes.length);
+    return dishes[randomIndex];
+},
+
+
+generateRandomMeal() {
+    const appetizer = this.getRandomDishFromCourse('appetizers');
+    const main = this.getRandomDishFromCourse('mains');
+    const dessert = this.getRandomDishFromCourse('desserts');
+    const totalPrice = appetizer.price + main.price + dessert.price;
+    return  `Your meal: ${appetizer.name}, ${main.name}, and ${dessert.name}. The total price of your meal is $ ${totalPrice}. 
+             *****************************************************
+
+                        Burbano Delicacies Restaraunt 
+             *****************************************************
+             
+                                Bill No 007
+                                
+                           _____________________
+                             Dishes | Prices
+                           ---------------------
+                            
+                            ${appetizer.name} : ${appetizer.price}  
+                            ${main.name} : ${main.price}
+                            ${dessert.name} : ${dessert.price}
+                            
+                            _____________________
+                            Total Bill : ${totalPrice}`;
+ },
+};
+
+
+menu.addDishToCourse('appetizers', 'Nachos', 8.95);
+menu.addDishToCourse('appetizers', 'Wings', 7.95);
+menu.addDishToCourse('appetizers', 'Mozzerella Sticks', 7.95);
+
+menu.addDishToCourse('mains', 'Alfredo and Noodles', 10.96);
+menu.addDishToCourse('mains', '6 oz Sirloin', 15.99);
+menu.addDishToCourse('mains', 'Fried Tacos, Rice and Beans', 10.59);
+
+menu.addDishToCourse('desserts', 'Deep Fried Ice Cream', 7.95);
+menu.addDishToCourse('desserts', 'Beignets', 7.95);
+menu.addDishToCourse('desserts', 'Cheesecake', 7.95);
+
+menu.billCounter
+//test
+const meal = menu.generateRandomMeal();
+
+
+  
+//report
+console.log(meal);
+
+             
+
+
+        
+    </script>
+  </body>
+</html>
